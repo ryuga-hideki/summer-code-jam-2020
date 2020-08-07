@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from .views import create_post_form
+from syndication_app.views import post_view, comment_add
 
 urlpatterns = [
     path('', include('syndication_app.urls')),
     path('rss/', include('syndication_app.urls')),
     path('admin/', admin.site.urls),
+    path('post/<str:community>', create_post_form),
+    path('posts/<int:post_id>', post_view),
+    path('posts/<int:post_id>/comment', comment_add),
     path('chat/', include('irc_chat.urls'))
 ]

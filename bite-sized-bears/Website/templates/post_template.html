@@ -1,0 +1,15 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.description }}</p>
+<h10>{{ post.creation_date }}</h10>
+<h5>{{ post.author }}</h5>
+
+<form action="./{{ post.id }}/comment" method="POST">{% csrf_token %}
+    <input id="content" type="text" name="content" value="Type comment">
+    <input type="submit" value="Add comment">
+</form>
+
+{% for comment in comments %}
+    <h1>{{ comment.author }}</h1>
+    <p>{{ comment.content }}</p>
+    <h5>{{ comment.creation_date }}</h5>
+{% endfor %}
